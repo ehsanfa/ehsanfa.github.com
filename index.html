@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html><body><head>
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    
+    <title>Ehsan Fazeli</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Serif:700" rel="stylesheet">
+	<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<div id="content">
+<h1>Ehsan Fazeli</h1>
+<ul class="menu">
+	<li><a href="/" title="Home">Home</a></li>
+	<li><a href="/posts/" title="blog">Blog</a></li>
+	<li><a href="/resume/" title="resume">Resume</a></li>
+	<li><a href="/content-me" title="Contact Me">Contact Me</a></li>
+</ul>
+<div class="content-list gists">
+  
+  <div class="content-single gist">
+  	 
+	<ul class="tags">
+	   <li>
+	    <a href="https://ehsanfa.github.com/tags/golang/">golang</a>
+	  </li> <li>
+	    <a href="https://ehsanfa.github.com/tags/cuncurrency/">cuncurrency</a>
+	  </li> <li>
+	    <a href="https://ehsanfa.github.com/tags/channels/">channels</a>
+	  </li></ul>
+	
+	<p>
+   	<p>If we declare a chan in function argument or return types like <code>&lt;-chan</code>, it will be receive-only, meaning that its users cannot write something to that channel
+This for example, leads to an error:</p>
+<pre tabindex="0"><code>func main() {
+	ch := random()
+	ch &lt;- 55
+	fmt.Println(&lt;-ch)
+}
+
+func random() &lt;-chan int {
+	ch := make(chan int, 1)
+	ch &lt;- 24
+	return ch
+}
+</code></pre><pre tabindex="0"><code>invalid operation: cannot send to receive-only channel ch (variable of type &lt;-chan int)
+</code></pre><p>The same goes to function arguments. This for example, leads to an error</p>
+<pre tabindex="0"><code>func main() {
+	ch := make(chan []byte)
+	for _, url := range os.Args[1:] {
+		go fetch(url, ch)
+		fmt.Printf(&#34;%s&#34;, &lt;-ch)
+	}
+}
+
+func fetch(url string, ch chan&lt;- []byte) {
+	res, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		panic(err)
+	}
+	ch &lt;- b
+	fmt.Println(&lt;- ch)
+}
+</code></pre><pre tabindex="0"><code>invalid operation: cannot receive from send-only channel ch (variable of type chan&lt;- []byte)
+</code></pre>
+   </p>
+  </div>
+  
+  <div class="content-single gist">
+  	 
+	<p>
+   	<p>some test content</p>
+
+   </p>
+  </div>
+  
+   
+</div>
+
+        </div><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script></body>
+</html>

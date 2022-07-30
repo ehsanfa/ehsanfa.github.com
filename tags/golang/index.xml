@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Ehsan Fazeli</title>
+    <link>https://ehsanfa.github.com/tags/golang/</link>
+    <description>Recent content in golang on Ehsan Fazeli</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Jul 2022 00:15:38 +0200</lastBuildDate><atom:link href="https://ehsanfa.github.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Read/Write-only channels</title>
+      <link>https://ehsanfa.github.com/gists/go_read_write_only_channels/</link>
+      <pubDate>Sun, 31 Jul 2022 00:15:38 +0200</pubDate>
+      
+      <guid>https://ehsanfa.github.com/gists/go_read_write_only_channels/</guid>
+      <description>If we declare a chan in function argument or return types like &amp;lt;-chan, it will be receive-only, meaning that its users cannot write something to that channel This for example, leads to an error:
+func main() { ch := random() ch &amp;lt;- 55 fmt.Println(&amp;lt;-ch) } func random() &amp;lt;-chan int { ch := make(chan int, 1) ch &amp;lt;- 24 return ch } invalid operation: cannot send to receive-only channel ch (variable of type &amp;lt;-chan int) The same goes to function arguments.</description>
+    </item>
+    
+  </channel>
+</rss>
